@@ -12,10 +12,11 @@
   "author": "Masa Zeradjanin <masa.zeradjanin.17@singimail.rs>",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "@types/express": "^4.11.1",
+    "@types/express": "^4.17.13",
     "@types/node": "^12.12.2",
     "eslint": "^7.32.0",
     "rimraf": "^3.0.2",
