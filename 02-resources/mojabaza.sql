@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent__category_id` int(10) unsigned DEFAULT NULL,
+  `image_path` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `uq_category_name` (`name`),
   KEY `fk_category_parent__category_id` (`parent__category_id`),

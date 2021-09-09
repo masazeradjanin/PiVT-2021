@@ -1,12 +1,13 @@
 import * as express from 'express';
 import CategoryService from './service';
 import CategoryController from './controller';
+import IApplicationRosources from '../../common/IApplicationResources.interface';
 
 
 export default class CategoryRouter{
-public static setupRoutes(application: express.Application){
+public static setupRoutes(application: express.Application, resources: IApplicationRosources){
   
-const categoryService: CategoryService = new CategoryService();
+const categoryService: CategoryService = new CategoryService(resources.databaseConnection);
 const categoryController: CategoryController = new CategoryController(categoryService);
 
 application.get("/category",        categoryController.getAll.bind(categoryController));

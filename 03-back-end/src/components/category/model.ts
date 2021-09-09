@@ -6,7 +6,7 @@ class CategoryModel{
     imagePath: string;
     parentCategoryId: number | null = null;
     parentCategory: CategoryModel | null = null;
-    subcategories: CategoryModel[] = [];
+    subCategories: CategoryModel[] = [];
 
 }
 export default CategoryModel;
