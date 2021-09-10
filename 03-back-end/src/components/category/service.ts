@@ -6,11 +6,17 @@ import { IAddCategory } from "./dto/AddCategory";
 import BaseService from '../../services/BaseService';
 import { IEditCategory } from "./dto/EditCategory";
 
+class CategoryModelAdapterOptions implements IModelAdapterOptions{
+
+    loadParentCategory: boolean = false;
+    loadSubcategories : boolean = false;
+    
+}
 class CategoryService extends BaseService<CategoryModel>{  
   
 
     protected async adaptModel(row: any,
-         options: Partial<IModelAdapterOptions> = { loadParent: false, loadChildren:false}): Promise<CategoryModel>{
+         options: Partial<CategoryModelAdapterOptions> = { }): Promise<CategoryModel>{
         const item: CategoryModel = new CategoryModel();
 
         item.categoryId = +(row?.category_id);
@@ -19,14 +25,14 @@ class CategoryService extends BaseService<CategoryModel>{
         item.parentCategoryId = row?.parent__category_id;
 
         
-        if(options.loadParent && item.parentCategoryId !== null){
+        if(options.loadParentCategory && item.parentCategoryId !== null){
             const data =  await this.getById(item.parentCategoryId);
             
             if (data instanceof CategoryModel){
               item.parentCategory = data;
             }}
 
-            if(options.loadChildren){
+            if(options.loadSubcategories){
 
                const data= await this.getAllByParentCategoryId(item.categoryId);
 
@@ -42,21 +48,23 @@ class CategoryService extends BaseService<CategoryModel>{
     }
 
     public async getAllByParentCategoryId(parentCategoryId: number): Promise<CategoryModel[] | IErrorResponse> {
-        return await this.getAllByFieldNameFromTable('category', 'parent__category_id', parentCategoryId) ;
+        return await this.getAllByFieldNameFromTable<CategoryModelAdapterOptions>('category', 'parent__category_id', parentCategoryId,
+        {loadSubcategories: true,}) ;
     }
 
 
 
     public async getAll(): Promise<CategoryModel[] | IErrorResponse> {
-        return await this.getAllByFieldNameFromTable('category', 'parent__category_id', null ,
-        {loadChildren: true,});
+        return await this.getAllByFieldNameFromTable<CategoryModelAdapterOptions>('category', 'parent__category_id', null ,
+        { loadSubcategories: true,
+        });
     }
 
 
 
 
     public async getById(categoryId:number): Promise<CategoryModel|null|IErrorResponse>{
-        return await this.getByIdFromTable("category", categoryId);
+        return await this.getByIdFromTable<CategoryModelAdapterOptions>("category", categoryId);
        
 }
 

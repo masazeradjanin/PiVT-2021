@@ -18,11 +18,8 @@ export default abstract class BaseService<ReturnModel extends IModel>{
         options: Partial<IModelAdapterOptions>,
     ): Promise<ReturnModel>;
     
-    protected async getAllFromTable(tableName: string,
-        options: Partial<IModelAdapterOptions> = {
-            loadChildren:false,
-            loadParent:false
-        }): Promise<ReturnModel[] | IErrorResponse>{
+    protected async getAllFromTable<AdapterOption extends IModelAdapterOptions>(tableName: string,
+        options: Partial<AdapterOption> = {}): Promise<ReturnModel[] | IErrorResponse>{
         return new Promise<ReturnModel[] | IErrorResponse>(async (resolve)=>{
            
 
@@ -36,10 +33,7 @@ export default abstract class BaseService<ReturnModel extends IModel>{
                   for(const row of rows){
               lista.push(
                   await this.adaptModel(
-                      row, {
-                          loadChildren: true,
-                      },
-                   )
+                      row, options, )
                   )
                     }}
     
@@ -57,11 +51,8 @@ export default abstract class BaseService<ReturnModel extends IModel>{
     }) 
     ;}
 
-    protected async getByIdFromTable(tableName: string, id:number,
-        options: Partial<IModelAdapterOptions> = {
-            loadChildren: true,
-            loadParent:true,
-        },): Promise<ReturnModel|null|IErrorResponse>{
+    protected async getByIdFromTable<AdapterOption extends IModelAdapterOptions>(tableName: string, id:number,
+        options: Partial<AdapterOption> = {},): Promise<ReturnModel|null|IErrorResponse>{
         return new Promise<ReturnModel|null|IErrorResponse>(async resolve =>{
 
             const sql: string = `SELECT * FROM ${tableName} WHERE ${tableName}_id =?;`;
@@ -96,10 +87,8 @@ export default abstract class BaseService<ReturnModel extends IModel>{
     });
 
     }
-    protected async getAllByFieldNameFromTable(tableName: string, fieldName:string, fieldValue: any,
-        options: Partial<IModelAdapterOptions> = { 
-         loadChildren:false,
-            loadParent:false}
+    protected async getAllByFieldNameFromTable<AdapterOption extends IModelAdapterOptions>(tableName: string, fieldName:string, fieldValue: any,
+        options: Partial<AdapterOption> = { }
         ): Promise<ReturnModel[]|IErrorResponse>{
         return new Promise<ReturnModel[] | IErrorResponse>(async (resolve)=>{
            
