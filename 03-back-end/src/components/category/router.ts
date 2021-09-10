@@ -14,6 +14,7 @@ const categoryController: CategoryController = new CategoryController(categorySe
 application.get("/category",        categoryController.getAll.bind(categoryController));
 application.get("/category/:id",    categoryController.getById.bind(categoryController));  
 application.post("/category",       categoryController.add.bind(categoryController));
+application.put("/category/:id",     categoryController.edit.bind(categoryController)             )
 }
 
 
