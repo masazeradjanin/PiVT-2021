@@ -14,7 +14,7 @@ constructor(categoryService: CategoryService){
 this.categoryService = categoryService;
  } 
 async getAll(req: Request, res: Response, next: NextFunction){
-    const categories = await this.categoryService.getAll();
+    const categories = await this.categoryService.getAll({loadSubcategories: false,});
     res.send(categories);
 }
 async getById(req: Request, res: Response, next: NextFunction){
@@ -27,7 +27,10 @@ async getById(req: Request, res: Response, next: NextFunction){
         return;
     }
 
-    const data : CategoryModel | null | IErrorResponse = await this.categoryService.getById(categoryId);
+    const data : CategoryModel | null | IErrorResponse = await this.categoryService.getById(categoryId,
+        {
+            loadSubcategories: true,
+        });
     if (data === null){
         res.sendStatus(404);
         return;
@@ -65,7 +68,7 @@ async edit(req: Request, res: Response, next: NextFunction){
         res.status(400).send(IEditCategoryValidator.errors);
         return;
         }
-        const result = await this.categoryService.edit(categoryId, data as IEditCategory);
+        const result = await this.categoryService.edit(categoryId, data as IEditCategory, {loadSubcategories: true,});
         if (result === null){
             res.sendStatus(404);
             return;
