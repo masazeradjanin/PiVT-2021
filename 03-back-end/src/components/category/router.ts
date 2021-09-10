@@ -15,8 +15,5 @@ application.get("/category/:id",        categoryController.getById.bind(category
 application.post("/category",           categoryController.add.bind(categoryController));
 application.put("/category/:id",        categoryController.edit.bind(categoryController));            
 application.delete("/category/:id",     categoryController.deleteById.bind(categoryController)); 
-
 }
-
-
 }
