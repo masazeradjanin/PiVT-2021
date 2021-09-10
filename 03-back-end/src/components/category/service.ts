@@ -121,6 +121,44 @@ public async edit(categoryId: number,
         });
         
     }
+
+   public  async delete(categoryId: number): Promise<IErrorResponse>{
+       return new Promise<IErrorResponse>(resolve =>{
+const sql="DELETE FROM category WHERE category_id = ?;";
+this.db.execute(sql,[categoryId])
+        .then(async result =>{
+
+            const deleteInfo: any  = result[0];
+            const deleteRowCount: number = +(deleteInfo?.affectedRows);
+            if(deleteRowCount ===1){
+                resolve({
+                    errorCode: 0,
+                    
+                    errorMessage: "Record deleted"
+                    
+                });
+
+            } else{
+                resolve({
+                    errorCode: -1
+                    ,
+                    errorMessage:"This record can not be deleted."
+                    
+                });
+            }
+        })
+        .catch(error=>{ resolve({
+            errorCode: error?.errno
+            ,
+            errorMessage:error?.sqlMessage
+            
+        });
+
+        });
+        
+       })
+       
+   }
 }
 
 export default CategoryService;
