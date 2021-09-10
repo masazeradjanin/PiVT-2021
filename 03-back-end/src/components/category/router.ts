@@ -8,8 +8,7 @@ import IRouter from '../../common/IRouter.interface';
 export default class CategoryRouter implements IRouter{
 public  setupRoutes(application: express.Application, resources: IApplicationRosources){
   
-const categoryService: CategoryService = new CategoryService(resources.databaseConnection);
-const categoryController: CategoryController = new CategoryController(categoryService);
+const categoryController: CategoryController = new CategoryController(resources);
 
 application.get("/category",            categoryController.getAll.bind(categoryController));
 application.get("/category/:id",        categoryController.getById.bind(categoryController));  

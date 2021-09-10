@@ -6,6 +6,7 @@ import CategoryRouter from './components/category/router';
 import * as mysql2 from "mysql2/promise"
 import IApplicationRosources from './common/IApplicationResources.interface';
 import Router from './router';
+import CategoryService from './components/category/service';
 
 async function main() {
     const application: express.Application = express();
@@ -13,21 +14,25 @@ async function main() {
     application.use(cors());
     application.use(express.json());
     
+   
     const resources: IApplicationRosources ={
-        databaseConnection : await mysql2.createConnection({
-        host: Config.database.host,
-        port: Config.database.port,
-        user: Config.database.user,
-        password: Config.database.password,
-        database: Config.database.database,
-        charset: Config.database.charset,
-        timezone: Config.database.timezone,
-        supportBigNumbers: true,
-    }),
+        databaseConnection :await mysql2.createConnection({
+            host: Config.database.host,
+            port: Config.database.port,
+            user: Config.database.user,
+            password: Config.database.password,
+            database: Config.database.database,
+            charset: Config.database.charset,
+            timezone: Config.database.timezone,
+            supportBigNumbers: true,
+        }) 
 }
     
 
     resources.databaseConnection.connect();
+    resources.services={
+        categoryService: new CategoryService(resources),
+    }
 
     application.use(Config.server.static.route,
          express.static(Config.server.static.path, {

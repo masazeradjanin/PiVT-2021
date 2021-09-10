@@ -4,17 +4,15 @@ import CategoryModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory, IAddCategoryValidator } from './dto/AddCategory';
 import { IEditCategory, IEditCategoryValidator } from './dto/EditCategory';
+import IApplicationRosources from '../../common/IApplicationResources.interface';
+import BaseController from '../../common/BaseController';
 
 
-class CategoryController{
+class CategoryController extends BaseController{
 
-private categoryService: CategoryService;
 
-constructor(categoryService: CategoryService){
-this.categoryService = categoryService;
- } 
 async getAll(req: Request, res: Response, next: NextFunction){
-    const categories = await this.categoryService.getAll({loadSubcategories: false,});
+    const categories = await this.services.categoryService.getAll({loadSubcategories: false,});
     res.send(categories);
 }
 async getById(req: Request, res: Response, next: NextFunction){
@@ -27,7 +25,7 @@ async getById(req: Request, res: Response, next: NextFunction){
         return;
     }
 
-    const data : CategoryModel | null | IErrorResponse = await this.categoryService.getById(categoryId,
+    const data : CategoryModel | null | IErrorResponse = await this.services.categoryService.getById(categoryId,
         {
             loadSubcategories: true,
         });
@@ -49,7 +47,7 @@ if(!IAddCategoryValidator(data)){
     res.status(400).send(IAddCategoryValidator.errors);
     return;
 }
-const result = await this.categoryService.add(data as IAddCategory);
+const result = await this.services.categoryService.add(data as IAddCategory);
 res.send(result);
 }
 
@@ -68,7 +66,7 @@ async edit(req: Request, res: Response, next: NextFunction){
         res.status(400).send(IEditCategoryValidator.errors);
         return;
         }
-        const result = await this.categoryService.edit(categoryId, data as IEditCategory, {loadSubcategories: true,});
+        const result = await this.services.categoryService.edit(categoryId, data as IEditCategory, {loadSubcategories: true,});
         if (result === null){
             res.sendStatus(404);
             return;
@@ -84,7 +82,7 @@ async edit(req: Request, res: Response, next: NextFunction){
         return;
     
     }
-    res.send(await this.categoryService.delete(categoryId));
+    res.send(await this.services.categoryService.delete(categoryId))
     }
 
 }
