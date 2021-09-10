@@ -1,6 +1,7 @@
+import IModel from '../../common/IModel.interface';
 
 
-class CategoryModel{
+class CategoryModel implements IModel{
     categoryId: number;
     name: string;
     imagePath: string;

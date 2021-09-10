@@ -14,7 +14,7 @@ type: "object",
 properties:{
     name:{
         type:"string",
-        miniLength: 2,
+        minLength: 2,
         maxLength:128,
     },
     imagePath:{
