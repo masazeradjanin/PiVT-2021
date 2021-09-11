@@ -1,4 +1,5 @@
-import BaseService from '../../../dist/services/BaseService';
+
+import BaseService from '../../common/BaseService';
 import IModelAdapterOptionsInterface from '../../common/IModelAdapterOptions.interface';
 import FurnitureModel from './model';
 
