@@ -7,6 +7,8 @@ import * as mysql2 from "mysql2/promise"
 import IApplicationRosources from './common/IApplicationResources.interface';
 import Router from './router';
 import CategoryService from './components/category/service';
+import AdministratorRouter from "./components/administrator/router";
+import AdministratorService from './components/administrator/service';
 
 async function main() {
     const application: express.Application = express();
@@ -32,6 +34,7 @@ async function main() {
     resources.databaseConnection.connect();
     resources.services={
         categoryService: new CategoryService(resources),
+        administratorService: new AdministratorService(resources),
     }
 
     application.use(Config.server.static.route,
@@ -46,7 +49,7 @@ async function main() {
     
     Router.setupRoutes(application, resources, [
         new CategoryRouter(),
-        // new UserRouter(),
+        new AdministratorRouter(),
         //new ArticleRouter(),
     ]);
   
