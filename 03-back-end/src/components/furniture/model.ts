@@ -1,5 +1,16 @@
 import IModel from '../../common/IModel.interface';
+import CategoryModel from '../category/model';
 
+class Price implements IModel {
+    priceId: number;
+    price: number;
+    createdAt: Date;
+}
+
+class Photo implements IModel {
+    photoId: number;
+    imagePath: string;
+}
 
 class FurnitureModel implements IModel{
     furnitureId: number;
@@ -12,8 +23,13 @@ class FurnitureModel implements IModel{
     material: string;
     isAvailabe: boolean;
     categoryId: number;
-    parentCategory: FurnitureModel | null = null;
-    subCategories: FurnitureModel[] = [];
+    locationId: number;
+    category?: CategoryModel[] = [];
+    currentPrice: number;
+    prices: Price[] = [];
+    photos: Photo[]=[];
 
 }
+export { Price as ArticlePrice };
+export { Photo as ArticlePhoto };
 export default FurnitureModel;

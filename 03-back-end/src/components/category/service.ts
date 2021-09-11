@@ -3,7 +3,7 @@ import CategoryModel from "./model";
 import IModelAdapterOptions from '../../common/IModelAdapterOptions.interface';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory } from "./dto/AddCategory";
-import BaseService from '../../services/BaseService';
+import BaseService from '../../common/BaseService';
 import { IEditCategory } from "./dto/EditCategory";
 
 class CategoryModelAdapterOptions implements IModelAdapterOptions{
