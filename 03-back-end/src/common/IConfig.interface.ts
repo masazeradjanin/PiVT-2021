@@ -1,4 +1,5 @@
 export default interface IConfig {
+    mail: any;
     server:{
         port:number,
         static:{
