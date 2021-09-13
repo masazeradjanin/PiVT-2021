@@ -11,6 +11,7 @@ import AdministratorRouter from "./components/administrator/router";
 import AdministratorService from './components/administrator/service';
 import UserRouter from './components/user/router';
 import UserService from './components/user/service';
+import CompanyService from './components/company/service';
 
 async function main() {
     const application: express.Application = express();
@@ -38,6 +39,7 @@ async function main() {
         categoryService: new CategoryService(resources),
         administratorService: new AdministratorService(resources),
         userService: new UserService(resources),
+        //companyService: new CompanyService(resources),
     }
 
     application.use(Config.server.static.route,

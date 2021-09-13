@@ -1,5 +1,4 @@
 import * as express from 'express';
-import CategoryService from './service';
 import CategoryController from './controller';
 import IApplicationRosources from '../../common/IApplicationResources.interface';
 import IRouter from '../../common/IRouter.interface';

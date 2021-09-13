@@ -30,6 +30,6 @@ class FurnitureModel implements IModel{
     photos: Photo[]=[];
 
 }
-export { Price as ArticlePrice };
-export { Photo as ArticlePhoto };
+export { Price as FurniturePrice };
+export { Photo as FurniturePhoto };
 export default FurnitureModel;

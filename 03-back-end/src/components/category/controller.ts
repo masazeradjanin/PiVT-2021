@@ -1,10 +1,9 @@
-import CategoryService from './service';
+
 import {Request, Response, NextFunction} from "express";
 import CategoryModel from './model';
 import IErrorResponse from '../../common/IErrorResponse.interface';
 import { IAddCategory, IAddCategoryValidator } from './dto/AddCategory';
 import { IEditCategory, IEditCategoryValidator } from './dto/EditCategory';
-import IApplicationRosources from '../../common/IApplicationResources.interface';
 import BaseController from '../../common/BaseController';
 
 
