@@ -92,3 +92,4 @@ const IAddFurnitureValidator = ajv.compile({
 
 export { IAddFurniture };
 export { IUploadedPhoto };
+export {IAddFurnitureValidator}
