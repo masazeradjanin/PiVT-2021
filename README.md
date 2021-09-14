@@ -8,3 +8,8 @@
 * U direktorijumu [02-resources](./02-resources) se nalaze dodatni materijali za ovaj projekat.
 * U direktorijumu [03-back-end](./03-back-end) se nalazi kod projekta za API.
 * U direktorijumu [04-front-end](./04-front-end) se nalazi front end deo aplikacije.
+
+## Kako se pokrece aplikacija
+
+* Podigne se baza podataka iz SQL dump datoteke kooja se nalazi na ovom linku [02-resources](./02-resources/mojabaza.sql) .
+* Pokrene se...
