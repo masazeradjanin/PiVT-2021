@@ -19,6 +19,7 @@ export default class Furniture extends React.Component<FurnitureProperties> {
                <p><strong>Color: </strong>{this.props.furniture.color}</p>
                <p><strong>Material: </strong>{this.props.furniture.material}</p>
                <p><strong>Description: </strong>{this.props.furniture.description}</p>
+               <p><strong>Dimensions: </strong>{this.props.furniture.dimensions}</p>
             </div>
         )
     }
