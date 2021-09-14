@@ -7,11 +7,17 @@ interface FurnitureProperties {
 }
 
 export default class Furniture extends React.Component<FurnitureProperties> {
+    constructor(props: FurnitureProperties) {
+        super(props);
+    }
     render() {
         return (
             <div className="furniture">
-                <h1>Namestaj</h1>
-                <p>Ovo je str namestaja</p> 
+               <h3>{this.props.furniture.title}</h3>
+               <strong>{this.props.furniture.currentPrice}</strong>
+               <p><strong>Color: </strong>{this.props.furniture.color}</p>
+               <p><strong>Material: </strong>{this.props.furniture.material}</p>
+               <p><strong>Description: </strong>{this.props.furniture.description}</p>
             </div>
         )
     }

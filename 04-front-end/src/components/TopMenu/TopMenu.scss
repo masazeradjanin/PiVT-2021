@@ -1,0 +1,18 @@
+ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: cadetblue;
+    color: white;
+
+    li {
+        a{
+            display: block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: white;
+        }
+    }
+}

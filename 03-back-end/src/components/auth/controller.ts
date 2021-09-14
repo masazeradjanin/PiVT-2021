@@ -143,7 +143,6 @@ export default class AuthController extends BaseController {
     
             try {
                 const existingData = jwt.verify(tokenString, Config.auth[role].auth.public) as ITokenData;
-    
                 const newTokenData: ITokenData = {
                     id: existingData.id,
                     identity: existingData.identity,

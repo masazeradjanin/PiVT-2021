@@ -18,7 +18,7 @@ export class FurnitureModelAdapterOptions
 class FurnitureService extends BaseService<FurnitureModel> {
   public async getAll(): Promise<FurnitureModel[]> {
     return (await this.services.furnitureService.getAllFromTable(
-      "funriture",
+      "furniture",
       {}
     )) as FurnitureModel[];
   }

@@ -6,6 +6,10 @@ import EventRegister from '../../api/EventRegister';
 import api from '../../api/api';
 import TopMenu from '../TopMenu/TopMenu';
 import Furniture from '../Furniture/Furniture';
+import UserLogin from '../User/UserLogin';
+import UserRegistration from '../User/UserRegister';
+import FurniturePage from '../Furniture/FurniturePage';
+import UserLogout from '../User/UserLogout';
 
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
@@ -68,8 +72,12 @@ export default class App extends React.Component {
           <TopMenu currentMenuType={this.state.authorizedRole} />
             <Switch>
               <Route path="/home" component={Home} />
-              <Route path="/furniture" component={Furniture} />
+              <Route path="/furniture" component={FurniturePage} />
               <Route path="/contact" component={Home} />
+
+              <Route path="/user/register" component={UserRegistration} />
+              <Route path="/user/login" component={UserLogin} />
+              <Route path="/user/logout" component={UserLogout} />
             </Switch>
         </BrowserRouter>
       </div>

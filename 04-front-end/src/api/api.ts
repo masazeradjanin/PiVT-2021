@@ -18,6 +18,7 @@ export default function api(
     attemptToRefresh: boolean = true,
 ): Promise<ApiResponse> {
     return new Promise<ApiResponse>(resolve => {
+        console.log(path, role);
         axios({
             method: method,
             baseURL: AppConfiguration.API_URL,
@@ -32,7 +33,7 @@ export default function api(
         .catch(async err => {
             if (attemptToRefresh && ("" + err).includes("401")) {
                 const newToken: string|null = await refreshToken(role);
-
+                console.log("refreshing token ", role)
                 if (newToken === null) {
                     return resolve({
                         status: 'login',
@@ -67,7 +68,6 @@ export default function api(
                     data: 'Wrong role',
                 });
             }
-
             resolve({
                 status: 'error',
                 data: err?.response,

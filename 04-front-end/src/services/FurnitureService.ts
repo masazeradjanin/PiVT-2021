@@ -5,10 +5,14 @@ export default class FuritureService {
     return new Promise<FurnitureModel[]>((resolve) => {
       api("get", "/furniture", "user", undefined, true)
         .then((res) => {
+          console.log(res);
           if (res?.status !== "ok") return resolve([]);
 
           resolve(res.data as FurnitureModel[]);
         })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   }
 }

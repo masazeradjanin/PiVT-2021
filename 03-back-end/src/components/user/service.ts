@@ -65,7 +65,7 @@ class UserService extends BaseService<UserModel> {
                     password_hash = ?,
                     forename = ?,
                     surname = ?,
-                    phone_number = ?,
+                    phone = ?,
                     postal_address = ?,
                     is_active = 1;`,
                 [
@@ -108,7 +108,7 @@ class UserService extends BaseService<UserModel> {
                     password_hash = ?,
                     forename = ?,
                     surname = ?,
-                    phone_number = ?,
+                    phone = ?,
                     postal_address = ?,
                     is_active = ?
                  WHERE

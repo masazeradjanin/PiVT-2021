@@ -2,6 +2,7 @@ import React from 'react';
 import FurnitureService from '../../services/FurnitureService';
 import FurnitureModel from '../../../../03-back-end/src/components/furniture/model';
 import Furniture from './Furniture';
+import './FurniturePage.scss';
 
 interface FurniturePageState {
     furnitureList: FurnitureModel[]
