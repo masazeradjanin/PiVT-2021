@@ -27,8 +27,12 @@ class FurnitureService extends BaseService<FurnitureModel>{
         item.categoryId = +(data?.category_id);
         item.locationId = +(data?.locationId);
 
+       
     
 return item;
 }
+
+
+
 }
 export default FurnitureService;
