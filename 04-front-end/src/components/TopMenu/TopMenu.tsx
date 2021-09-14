@@ -9,9 +9,13 @@ export default class TopMenu extends React.Component<TopMenuProperties> {
     render() {
         if (this.props.currentMenuType === "visitor") {
             return (
-                <ul className="justify-content-center">
+               
+                <ul className="justify-content-center"> 
                     <li>
-                        <Link className="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" to="/home">Home</Link>
+                    </li>
+                    <li>
+                        <Link className="nav-link" to="/furniture">Furniture</Link>
                     </li>
 
                     <li>

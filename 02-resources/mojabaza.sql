@@ -71,7 +71,18 @@ CREATE TABLE IF NOT EXISTS `category` (
   UNIQUE KEY `uq_category_name` (`name`),
   KEY `fk_category_parent__category_id` (`parent__category_id`),
   CONSTRAINT `fk_category_parent__category_id` FOREIGN KEY (`parent__category_id`) REFERENCES `category` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table aplikacija.company
+DROP TABLE IF EXISTS `company`;
+CREATE TABLE IF NOT EXISTS `company` (
+  `company_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`company_id`),
+  UNIQUE KEY `uq_company_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -83,19 +94,19 @@ CREATE TABLE IF NOT EXISTS `furniture` (
   `title` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `descr_cons` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dimensions` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dimensions` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `color` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `material` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_available` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `category_id` int(10) unsigned NOT NULL,
   `location_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`furniture_id`),
-  UNIQUE KEY `uq_furnituretitle` (`title`),
+  UNIQUE KEY `uq_furniture_title` (`title`) USING BTREE,
   KEY `fk_furniture_category_id` (`category_id`),
   KEY `fk_furniture_location_id` (`location_id`),
   CONSTRAINT `fk_furniture_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_furniture_location_id` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -109,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `furniture_price` (
   PRIMARY KEY (`furniture_price_id`),
   KEY `fk_furniture_price_furniture_id` (`furniture_id`),
   CONSTRAINT `fk_furniture_price_furniture_id` FOREIGN KEY (`furniture_id`) REFERENCES `furniture` (`furniture_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -124,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   PRIMARY KEY (`location_id`),
   KEY `fk_location_company_id` (`company_id`),
   CONSTRAINT `fk_location_company_id` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -132,8 +143,8 @@ CREATE TABLE IF NOT EXISTS `location` (
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `status` enum('pending','rejected','accepted','completed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
+  `status` enum('pending','rejected','accepted','completed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `cart_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`order_id`),
   UNIQUE KEY `uq_order_cart_id` (`cart_id`),

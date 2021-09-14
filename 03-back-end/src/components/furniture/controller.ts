@@ -241,6 +241,10 @@ class FurnitureController extends BaseController {
         if (id <= 0) return res.status(400).send("Invalid category ID value.");
         res.send(await this.services.furnitureService.getAllByCategoryId(id));
     }
+
+    public async getAll(req: Request, res: Response) {
+        res.send(await this.services.furnitureService.getAll());
+    }
 }
 
 export default FurnitureController;
