@@ -1,5 +1,6 @@
 import React from 'react';
 import FurnitureModel from '../../../../03-back-end/src/components/furniture/model';
+import './Furniture.scss'
 
 
 interface FurnitureProperties {

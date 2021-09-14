@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `photo` (
   UNIQUE KEY `uq_photo_image_path` (`image_path`),
   KEY `fk_photo_furniture_id` (`furniture_id`),
   CONSTRAINT `fk_photo_furniture_id` FOREIGN KEY (`furniture_id`) REFERENCES `furniture` (`furniture_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password_hash` int(255) NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `password_reset_code` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `forename` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `surname` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uq_user_email` (`email`) USING BTREE,
   UNIQUE KEY `uq_user_phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
